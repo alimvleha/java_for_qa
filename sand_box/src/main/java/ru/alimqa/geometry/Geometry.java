@@ -3,6 +3,7 @@ package ru.alimqa.geometry;
 import ru.alimqa.geometry.figures.Perimeter;
 import ru.alimqa.geometry.figures.Rectangle;
 import ru.alimqa.geometry.figures.Square;
+import ru.alimqa.geometry.figures.Triangle;
 
 public class Geometry {
     public  static  void main (String[] args) {
@@ -14,7 +15,7 @@ public class Geometry {
         Rectangle.printRectangleArea(5.0, 10.0);
 
         Perimeter.printTrianglePerimeter(3,4,5);
-        Square.printTriangleArea(3,4,5);
+        Triangle.printTriangleArea(3,4,5);
     }
 }
 
