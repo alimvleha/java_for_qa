@@ -14,12 +14,12 @@ Triangle {
 
     public static void printTriangleArea(double a, double b, double c) {
         Triangle triangle = new Triangle(a, b, c);
-        var area = String.format("Площадь треугольника со сторонами %.1f, %.1f, %.1f = %.1f", a, b, c, triangle.area());
+        var area = String.format("Площадь треугольника со сторонами %.1f, %.1f, %.1f = %.1f", a, b, c, triangle.calculateAreaTriangle());
         System.out.println(area);
     }
 
-    public double area() {
-        double p = Perimeter.perimeter(this) / 2;
+    public double calculateAreaTriangle() {
+        double p = Perimeter.calculatePerimeterTriangle(this) / 2;
         return Math.sqrt(p * (p - sideA) * (p - sideB) * (p - sideC));
     }
 }

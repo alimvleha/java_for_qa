@@ -9,7 +9,7 @@ public class TestTriangle {
     @Description("Проверяем вычисление периметра треугольника")
     void testCalculateTrianglePerimeter() {
         Triangle triangle = new Triangle(3.0, 4.0, 5.0);
-        double result = Perimeter.perimeter(triangle);
+        double result = Perimeter.calculatePerimeterTriangle(triangle);
         Assertions.assertEquals(12.0, result);
     }
 
@@ -17,7 +17,7 @@ public class TestTriangle {
     @Description("Проверяем вычисление площади треугольника")
     void testCalculateTriangleArea() {
         Triangle triangle = new Triangle(3.0, 4.0, 5.0);
-        double result = triangle.area();
+        double result = triangle.calculateAreaTriangle();
         Assertions.assertEquals(6.0, result);
     }
 }
