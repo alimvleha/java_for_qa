@@ -1,6 +1,7 @@
 package ru.alimqa.geometry.figures;
 
-public class Triangle {
+public class
+Triangle {
     public double sideA;
     public double sideB;
     public double sideC;
@@ -17,12 +18,8 @@ public class Triangle {
         System.out.println(area);
     }
 
-    public double perimeter() {
-        return sideA + sideB + sideC;
-    }
-
-    private double area() {
-        double p = perimeter() / 2;
+    public double area() {
+        double p = Perimeter.perimeter(this) / 2;
         return Math.sqrt(p * (p - sideA) * (p - sideB) * (p - sideC));
     }
 }
