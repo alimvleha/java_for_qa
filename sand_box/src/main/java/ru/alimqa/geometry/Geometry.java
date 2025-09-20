@@ -1,6 +1,5 @@
 package ru.alimqa.geometry;
 
-import ru.alimqa.geometry.figures.Perimeter;
 import ru.alimqa.geometry.figures.Rectangle;
 import ru.alimqa.geometry.figures.Square;
 import ru.alimqa.geometry.figures.Triangle;
@@ -14,8 +13,8 @@ public class Geometry {
         Rectangle.printRectangleArea(3.0, 5.0);
         Rectangle.printRectangleArea(5.0, 10.0);
 
-        Perimeter.printTrianglePerimeter(3,4,5);
-        Triangle.printTriangleArea(3,4,5);
+        Triangle.printTrianglePerimeter(3.0, 4.0, 5.0);
+        Triangle.printTriangleArea(3.0, 4.0, 5.0);
     }
 }
 

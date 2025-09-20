@@ -1,10 +1,9 @@
 package ru.alimqa.geometry.figures;
 
-public class
-Triangle {
-    public double sideA;
-    public double sideB;
-    public double sideC;
+public class Triangle {
+    private double sideA;
+    private double sideB;
+    private double sideC;
 
     public Triangle(double a, double b, double c) {
         this.sideA = a;
@@ -13,13 +12,37 @@ Triangle {
     }
 
     public static void printTriangleArea(double a, double b, double c) {
-        Triangle triangle = new Triangle(a, b, c);
-        var area = String.format("Площадь треугольника со сторонами %.1f, %.1f, %.1f = %.1f", a, b, c, triangle.calculateAreaTriangle());
-        System.out.println(area);
+        System.out.println(String.format("Площадь треугольника со сторонами %.1f и %.1f и %.1f = %.1f",
+                a, b, c, area(a, b, c)));
     }
 
-    public double calculateAreaTriangle() {
-        double p = Perimeter.calculatePerimeterTriangle(this) / 2;
-        return Math.sqrt(p * (p - sideA) * (p - sideB) * (p - sideC));
+    public static double area(double a, double b, double c) {
+        double p = (a + b + c) / 2;
+        return Math.sqrt(p * (p - a) * (p - b) * (p - c));
+    }
+
+    public static void printTrianglePerimeter(double a, double b, double c) {
+        System.out.println(String.format("Периметр треугольника со сторонами %.1f и %.1f и %.1f = %.1f",
+                a, b, c, perimeter(a, b, c)));
+    }
+
+    public static double perimeter(double a, double b, double c) {
+        return a + b + c;
+    }
+
+    public double area() {
+        return area(sideA, sideB, sideC);
+    }
+
+    public double perimeter() {
+        return perimeter(sideA, sideB, sideC);
+    }
+
+    public void printArea() {
+        printTriangleArea(sideA, sideB, sideC);
+    }
+
+    public void printPerimeter() {
+        printTrianglePerimeter(sideA, sideB, sideC);
     }
 }
