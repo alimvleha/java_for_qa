@@ -8,14 +8,19 @@ public class TestTriangle {
     @Test
     @Description("Проверяем вычисление периметра треугольника")
     void testCalculateTrianglePerimeter() {
-        var result = Triangle.perimeter(3.0, 4.0, 5.0);
+        var p = new Triangle(3.0,4.0,5.0);
+        double result = p.perimeter();
         Assertions.assertEquals(12.0, result);
     }
 
     @Test
     @Description("Проверяем вычисление площади треугольника")
     void testCalculateTriangleArea() {
-        var result = Triangle.area(3.0, 4.0, 5.0);
+        var a = new Triangle(3.0,4.0,5.0);
+        double result = a.area();
         Assertions.assertEquals(6.0, result);
+
     }
+
+
 }
