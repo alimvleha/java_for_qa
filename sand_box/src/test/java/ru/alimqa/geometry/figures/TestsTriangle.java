@@ -20,4 +20,25 @@ public class TestsTriangle {
         double result = a.area();
         Assertions.assertEquals(6.0, result);
     }
+
+    @Test
+    @Description("Проверяем, что нельзя создать треугольник с отрицательной стороной")
+    void testCreateTriangleWithNegativeSide() {
+        try {
+            new Triangle(3.0, 4.0, -5.0);
+            Assertions.fail();
+        } catch (IllegalArgumentException exception) {
+            //ok
+        }
+    }
+    @Test
+    @Description("Проверяем, что нельзя создать треугольник с нарушением неравенства")
+    void testCannotCreateTriangleWithInvalidSides() {
+        try {
+            new Triangle(3.0, 4.0, 20.0);
+            Assertions.fail();
+        } catch (IllegalArgumentException exception) {
+            //ok
+        }
+    }
 }

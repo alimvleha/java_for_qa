@@ -6,6 +6,12 @@ public class Triangle {
     private double sideC;
 
     public Triangle(double a, double b, double c) {
+        if (a < 0 || b < 0 || c < 0) {
+            throw new IllegalArgumentException("Длина стороны треугольника должна быть неотрицательной");
+        }
+        if ((a + b < c) || (a + c < b) || (b + c < a)) {
+            throw new IllegalArgumentException("Нарушение неравенства треугольника: сумма любых двух сторон должна быть не меньше третьей стороны");
+        }
         this.sideA = a;
         this.sideB = b;
         this.sideC = c;
