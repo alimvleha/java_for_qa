@@ -1,3 +1,4 @@
+import model.GroupData;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -39,15 +40,15 @@ public class TestsBase {
         }
     }
 
-    protected void createGroup(String groupname, String groupheader, String groupfooter) {
+    protected void createGroup(GroupData group) {
         driver.findElement(By.xpath("//a[contains(text(),'groups')]")).click();
         driver.findElement(By.xpath("//input[@name=\'new\']")).click();
         driver.findElement(By.xpath("//input[@name=\'group_name\']")).click();
-        driver.findElement(By.xpath("//input[@name=\'group_name\']")).sendKeys(groupname);
+        driver.findElement(By.xpath("//input[@name=\'group_name\']")).sendKeys(group.name());
         driver.findElement(By.xpath("//textarea[@name=\'group_header\']")).click();
-        driver.findElement(By.xpath("//textarea[@name=\'group_header\']")).sendKeys(groupheader);
+        driver.findElement(By.xpath("//textarea[@name=\'group_header\']")).sendKeys(group.header());
         driver.findElement(By.xpath("//textarea[@name=\'group_footer\']")).click();
-        driver.findElement(By.xpath("//textarea[@name=\'group_footer\']")).sendKeys(groupfooter);
+        driver.findElement(By.xpath("//textarea[@name=\'group_footer\']")).sendKeys(group.footer());
         driver.findElement(By.xpath("//input[@name=\'submit\']")).click();
         driver.findElement(By.xpath("//a[contains(text(),\'group page\')]")).click();
     }
