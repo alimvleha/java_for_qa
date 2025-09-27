@@ -1,20 +1,16 @@
 package ru.alimqa.geometry.figures;
 
-public class Triangle {
-    private double sideA;
-    private double sideB;
-    private double sideC;
+import java.util.Objects;
 
-    public Triangle(double a, double b, double c) {
-        if (a < 0 || b < 0 || c < 0) {
+public record Triangle(double sideA, double sideB, double sideC) {
+    
+    public Triangle{
+        if (sideA < 0 || sideB < 0 || sideC < 0) {
             throw new IllegalArgumentException("Длина стороны треугольника должна быть неотрицательной");
         }
-        if ((a + b < c) || (a + c < b) || (b + c < a)) {
+        if ((sideA + sideB < sideC) || (sideA + sideC < sideB) || (sideB + sideC < sideA)) {
             throw new IllegalArgumentException("Нарушение неравенства треугольника: сумма любых двух сторон должна быть не меньше третьей стороны");
         }
-        this.sideA = a;
-        this.sideB = b;
-        this.sideC = c;
     }
 
     public static void printTriangleArea(double a, double b, double c) {
@@ -50,5 +46,23 @@ public class Triangle {
 
     public void printPerimeter() {
         printTrianglePerimeter(sideA, sideB, sideC);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Triangle triangle = (Triangle) o;
+        return (Double.compare(triangle.sideA, sideA) == 0 && Double.compare(triangle.sideB, sideB) == 0 && Double.compare(triangle.sideC, sideC) == 0) ||
+                (Double.compare(triangle.sideA, sideA) == 0 && Double.compare(triangle.sideB, sideC) == 0 && Double.compare(triangle.sideC, sideB) == 0) ||
+                (Double.compare(triangle.sideA, sideB) == 0 && Double.compare(triangle.sideB, sideA) == 0 && Double.compare(triangle.sideC, sideC) == 0) ||
+                (Double.compare(triangle.sideA, sideB) == 0 && Double.compare(triangle.sideB, sideC) == 0 && Double.compare(triangle.sideC, sideA) == 0) ||
+                (Double.compare(triangle.sideA, sideC) == 0 && Double.compare(triangle.sideB, sideA) == 0 && Double.compare(triangle.sideC, sideB) == 0) ||
+                (Double.compare(triangle.sideA, sideC) == 0 && Double.compare(triangle.sideB, sideB) == 0 && Double.compare(triangle.sideC, sideA) == 0);
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
     }
 }

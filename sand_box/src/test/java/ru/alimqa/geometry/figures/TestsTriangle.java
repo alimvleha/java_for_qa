@@ -41,4 +41,26 @@ public class TestsTriangle {
             //ok
         }
     }
+//    @Test
+//    void test() {
+//        var t1 = new Triangle(3, 4, 5);
+//        var t2 = new Triangle(3, 2, 3);
+//        Assertions.assertNotEquals(t1,t2);
+//    }
+//
+    @Test
+    @Description("Проверяем, что треугольники с одинаковыми сторонами считались равными")
+    void testTriangleEqual() {
+        var t1 = new Triangle(3, 4, 5);
+        var t2 = new Triangle(3, 4, 5);
+        Assertions.assertTrue(t1.equals(t2));
+    }
+
+    @Test
+    @Description("Проверяем, что треугольники с одинаковыми сторонами считались равными, независимо от порядка сторон")
+    void testTriangleEquality() {
+        var t1 = new Triangle(3, 4, 5);
+        var t2 = new Triangle(5, 4, 3);
+        Assertions.assertTrue(t1.equals(t2));
+    }
 }
