@@ -1,11 +1,10 @@
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 
-public class GroupCreationTest {
+public class TestsGroupCreation {
     private static WebDriver driver;
 
     @BeforeEach
@@ -24,7 +23,7 @@ public class GroupCreationTest {
     }
 
     @Test
-    public void canCreateGroup() {
+    public void testCreateGroup() {
         if (!isElementPresent(By.xpath("//input[@name=\'new\']"))) {
             driver.findElement(By.xpath("//a[contains(text(),'groups')]")).click();
         }
@@ -50,7 +49,7 @@ public class GroupCreationTest {
     }
 
     @Test
-    public void canCreateGroupWithEmptyName() {
+    public void testCreateGroupWithEmptyName() {
         if (!isElementPresent(By.xpath("//input[@name=\'new\']"))) {
             driver.findElement(By.xpath("//a[contains(text(),'groups')]")).click();
         }
