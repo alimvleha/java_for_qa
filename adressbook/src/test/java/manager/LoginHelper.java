@@ -2,19 +2,15 @@ package manager;
 
 import org.openqa.selenium.By;
 
-public class LoginHelper {
-
-    private final ApplicationManager manager;
+public class LoginHelper extends HelperBase {
 
     public LoginHelper(ApplicationManager manager) {
-        this.manager = manager;
+        super(manager);
     }
 
     void login(String user, String password) {
-        manager.driver.findElement(By.xpath("//input[@name=\'user\']")).click();
-        manager.driver.findElement(By.xpath("//input[@name=\'user\']")).sendKeys(user);
-        manager.driver.findElement(By.xpath("//input[@name=\'pass\']")).click();
-        manager.driver.findElement(By.xpath("//input[@name=\'pass\']")).sendKeys(password);
-        manager.driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
+        type(By.xpath("//input[@name=\'user\']"), user);
+        type(By.xpath("//input[@name=\'pass\']"), password);
+        click(By.xpath("//input[@value=\'Login\']"));
     }
 }

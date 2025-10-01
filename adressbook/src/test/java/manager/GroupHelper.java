@@ -3,17 +3,15 @@ package manager;
 import model.GroupData;
 import org.openqa.selenium.By;
 
-public class GroupHelper {
-
-    private final ApplicationManager manager;
+public class GroupHelper extends HelperBase {
 
     public GroupHelper(ApplicationManager manager) {
-        this.manager = manager;
+        super(manager);
     }
 
     public void openGroupsPage() {
         if (!manager.isElementPresent(By.xpath("//input[@name=\'new\']"))) {
-            manager.driver.findElement(By.xpath("//a[contains(text(),'groups')]")).click();
+            click(By.xpath("//a[contains(text(),'groups')]"));
         }
     }
 
@@ -24,23 +22,71 @@ public class GroupHelper {
 
     public void createGroup(GroupData group) {
         openGroupsPage();
-        manager.driver.findElement(By.xpath("//a[contains(text(),'groups')]")).click();
-        manager.driver.findElement(By.xpath("//input[@name=\'new\']")).click();
-        manager.driver.findElement(By.xpath("//input[@name=\'group_name\']")).click();
-        manager.driver.findElement(By.xpath("//input[@name=\'group_name\']")).sendKeys(group.name());
-        manager.driver.findElement(By.xpath("//textarea[@name=\'group_header\']")).click();
-        manager.driver.findElement(By.xpath("//textarea[@name=\'group_header\']")).sendKeys(group.header());
-        manager.driver.findElement(By.xpath("//textarea[@name=\'group_footer\']")).click();
-        manager.driver.findElement(By.xpath("//textarea[@name=\'group_footer\']")).sendKeys(group.footer());
-        manager.driver.findElement(By.xpath("//input[@name=\'submit\']")).click();
-        manager.driver.findElement(By.xpath("//a[contains(text(),\'group page\')]")).click();
+        initGroupCreation();
+        fillGroupForm(group);
+        submitGroupCreation();
+        returnToGroupsPage();
     }
 
     public void removeGroup() {
         openGroupsPage();
-        manager.driver.findElement(By.xpath("//a[contains(text(),\'groups\')]")).click();
-        manager.driver.findElement(By.name("selected[]")).click();
-        manager.driver.findElement(By.xpath("(//input[@name=\'delete\'])[2]")).click();
-        manager.driver.findElement(By.xpath("//a[contains(text(),\'group page\')]")).click();
+        selectGroup();
+        removeSelectedGroup();
+        returnToGroupsPage();
     }
+
+    public void modifyGroup(GroupData modifiedGroup) {
+        openGroupsPage();
+        selectGroup();
+        initGroupModification();
+        fillGroupForm(modifiedGroup);
+        submitGroupModification();
+        returnToGroupsPage();
+
+    }
+
+
+    private void fillGroupForm(GroupData group) {
+        type(By.xpath("//input[@name=\'group_name\']"), group.name());
+        type(By.xpath("//textarea[@name=\'group_header\']"), group.header());
+        type(By.xpath("//textarea[@name=\'group_footer\']"), group.footer());
+
+    }
+
+
+
+    private void initGroupModification() {
+        click(By.name("edit"));
+
+    }
+
+    private void selectGroup() {
+        click(By.name("selected[]"));
+
+    }
+
+    private void submitGroupCreation() {
+        click(By.xpath("//input[@name=\'submit\']"));
+    }
+
+
+
+    private void initGroupCreation() {
+        click(By.xpath("//input[@name=\'new\']"));
+    }
+
+    private void removeSelectedGroup() {
+        click(By.xpath("(//input[@name=\'delete\'])[2]"));
+    }
+
+    private void returnToGroupsPage() {
+        click(By.xpath("//a[contains(text(),\'group page\')]"));
+
+    }
+
+    private void submitGroupModification() {
+        click(By.name("update"));
+
+    }
+
 }
