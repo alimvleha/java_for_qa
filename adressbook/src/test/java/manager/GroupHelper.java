@@ -54,7 +54,6 @@ public class GroupHelper extends HelperBase {
     }
 
 
-
     private void initGroupModification() {
         click(By.name("edit"));
 
@@ -68,7 +67,6 @@ public class GroupHelper extends HelperBase {
     private void submitGroupCreation() {
         click(By.xpath("//input[@name=\'submit\']"));
     }
-
 
 
     private void initGroupCreation() {

@@ -17,10 +17,10 @@ public class ApplicationManager {
         if (driver == null) {
             if ("firefox".equals(browser)) {
                 driver = new FirefoxDriver();
-            } else if ("chrome".equals(browser))  {
-                    driver = new ChromeDriver();
+            } else if ("chrome".equals(browser)) {
+                driver = new ChromeDriver();
             } else {
-                throw  new IllegalArgumentException(String.format("Нераспознан браузер %s", browser));
+                throw new IllegalArgumentException(String.format("Нераспознан браузер %s", browser));
             }
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
             driver.get("http://localhost/addressbook/");
@@ -36,14 +36,14 @@ public class ApplicationManager {
         return session;
     }
 
-    public GroupHelper groups () {
+    public GroupHelper groups() {
         if (groups == null) {
             groups = new GroupHelper(this);
         }
         return groups;
     }
 
-    public ContactHelper contacts () {
+    public ContactHelper contacts() {
         if (contacts == null) {
             contacts = new ContactHelper(this);
         }

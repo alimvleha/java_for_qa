@@ -14,7 +14,7 @@ public class ContactHelper extends HelperBase {
         openContactAdditionsPage();
         fillContactForm(contact);
         saveFormContact();
-        openCintactPage();
+        openContactPage();
     }
 
 
@@ -56,6 +56,11 @@ public class ContactHelper extends HelperBase {
         click(By.name("selected[]"));
     }
 
+    public boolean isContactPresent() {
+        openContactPage();
+        return manager.isElementPresent(By.name("selected[]"));
+    }
+
     public void removeContact() {
         click(By.xpath("//input[@name=\'delete\']"));
     }
@@ -64,7 +69,7 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
-    private void openCintactPage() {
+    private void openContactPage() {
         click(By.xpath("//a[contains(text(),'home')]"));
     }
 
