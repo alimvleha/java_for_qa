@@ -1,6 +1,5 @@
+package tests;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import tests.TestsBase;
 
 public class TestsRemovalContact extends TestsBase {
     @Test
