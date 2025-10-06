@@ -7,7 +7,7 @@ public class TestsGroupMidification extends TestsBase {
 
     @Test
     void testModifyGroup() {
-        if (!app.groups().isGroupPresent()) {
+        if (app.groups().getCount() == 0) {
             app.groups().createGroup(new GroupData("name", "header", "footer"));
         }
         app.groups().modifyGroup(new GroupData().withName("modified name"));
