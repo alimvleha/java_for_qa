@@ -12,13 +12,14 @@ public class TestsCreationGroup extends TestsBase {
         int groupCount = app.groups().getCount();
         app.groups().createGroup(new GroupData("name", "header", "footer"));
         int newGroupCount = app.groups().getCount();
-        Assertions.assertEquals(groupCount + 1, newGroupCount );
+        Assertions.assertEquals(groupCount + 1, newGroupCount);
     }
 
     @Test
     public void testCreateGroupWithEmptyName() {
         app.groups().createGroup(new GroupData());
     }
+
     @Test
     public void testCreateGroupWithNameOnly() {
         app.groups().createGroup(new GroupData().withName("some name"));
@@ -27,5 +28,17 @@ public class TestsCreationGroup extends TestsBase {
     @Test
     public void testCreateGroupWithHeaderOnly() {
         app.groups().createGroup(new GroupData().withHeader("some header"));
+    }
+
+    @Test
+    public void testCreateMultipleGroup() {
+        int n = 5;
+        int groupCount = app.groups().getCount();
+        for (int i = 0; i < n; i++) {
+            app.groups().createGroup(new GroupData(randomString(i * 10), "header", "footer"));
+        }
+
+        int newGroupCount = app.groups().getCount();
+        Assertions.assertEquals(groupCount + n, newGroupCount);
     }
 }
