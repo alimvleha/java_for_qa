@@ -5,18 +5,33 @@ import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class TestsRemovalContact extends TestsBase {
     @Test
     public void testRemoveContact() {
-        if (!app.contacts().isContactPresent()) {
-            app.contacts().createContact(new ContactData());
+        if (app.contacts().getCount() == 0) {
+            app.contacts().createContact(new ContactData()
+                    .withId("")
+                    .withFirstName("Алексей")
+                    .withMiddleName("Альбертович")
+                    .withLastName("Алимов")
+                    .withNickname("alimov"));
         }
-        app.contacts().selectContact();
-        app.contacts().removeContact();
+        var oldContacts = app.contacts().getList();
+        var rnd = new Random();
+        var index = rnd.nextInt(oldContacts.size());
+        app.contacts().removeContact(oldContacts.get(index));
+        var newContacts = app.contacts().getList();
+        var expectedList = new ArrayList<>(oldContacts);
+        expectedList.remove(index);
+        Assertions.assertEquals(newContacts, expectedList);
     }
 
     @Test
-    void testRemoveAllContactAtOnce(){
+    void testRemoveAllContactAtOnce() {
         if (app.contacts().getCount() == 0) {
             app.contacts().createContact(new ContactData()
                     .withFirstName("Алексей")

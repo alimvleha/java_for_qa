@@ -1,7 +1,11 @@
 package manager;
 
 import model.ContactData;
+import model.GroupData;
 import org.openqa.selenium.By;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ContactHelper extends HelperBase {
@@ -52,8 +56,9 @@ public class ContactHelper extends HelperBase {
         manager.driver.findElement(By.name("new_group")).sendKeys(contact.group());
     }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(ContactData contact) {
+
+        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
     }
 
     public boolean isContactPresent() {
@@ -61,8 +66,9 @@ public class ContactHelper extends HelperBase {
         return manager.isElementPresent(By.name("selected[]"));
     }
 
-    public void removeContact() {
-        click(By.xpath("//input[@name=\'delete\']"));
+    public void removeContact(ContactData contact) {
+        selectContact(contact);
+        removeSelectedContacts();
     }
 
     private void saveFormContact() {
@@ -85,7 +91,12 @@ public class ContactHelper extends HelperBase {
     public void removeAllContacts() {
         openContactPage();
         selectAllContacts();
-        removeContact();
+        removeSelectedContacts();
+
+    }
+
+    private void removeSelectedContacts() {
+        click(By.xpath("//input[@value='Delete']"));
     }
 
     private void selectAllContacts() {
@@ -94,4 +105,16 @@ public class ContactHelper extends HelperBase {
             checkbox.click();
         }
 }
+
+    public List<ContactData> getList() {
+        var contacts = new ArrayList<ContactData>();
+        var spans = manager.driver.findElements(By.cssSelector("tr[name='entry']"));
+        for (var span : spans) {
+            var name = span.getText();
+            var checkbox = span.findElement(By.name("selected[]"));
+            var id = checkbox.getAttribute("value");
+            contacts.add(new ContactData().withId(id).withFirstName(name));
+        }
+        return contacts;
+    }
 }
