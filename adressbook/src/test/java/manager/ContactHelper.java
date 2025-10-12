@@ -104,17 +104,23 @@ public class ContactHelper extends HelperBase {
         for (var checkbox : checkboxes) {
             checkbox.click();
         }
-}
+    }
 
     public List<ContactData> getList() {
         var contacts = new ArrayList<ContactData>();
-        var spans = manager.driver.findElements(By.cssSelector("tr[name='entry']"));
-        for (var span : spans) {
-            var name = span.getText();
-            var checkbox = span.findElement(By.name("selected[]"));
-            var id = checkbox.getAttribute("value");
-            contacts.add(new ContactData().withId(id).withFirstName(name));
+        var contactRows = manager.driver.findElements(By.cssSelector("tr"));
+        for (var contactRow : contactRows) {
+            var cells = contactRow.findElements(By.cssSelector("td"));
+            if (cells.size() < 6) continue;
+            var checkbox = contactRow.findElement(By.name("selected[]"));
+            contacts.add(new ContactData()
+                    .withId(checkbox.getAttribute("value"))
+                    .withLastName(cells.get(1).getText())
+                    .withFirstName(cells.get(2).getText())
+                    .withAddress(cells.get(3).getText())
+                    .withHomePhone(cells.get(5).getText()));
         }
         return contacts;
     }
 }
+
