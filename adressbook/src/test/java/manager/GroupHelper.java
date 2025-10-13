@@ -39,8 +39,6 @@ public class GroupHelper extends HelperBase {
         initGroupModification();
         fillGroupForm(modifiedGroup);
         submitGroupModification();
-        returnToGroupsPage();
-
     }
 
 
@@ -54,7 +52,6 @@ public class GroupHelper extends HelperBase {
 
     private void initGroupModification() {
         click(By.name("edit"));
-
     }
 
     private void selectGroup(GroupData group) {
