@@ -25,7 +25,12 @@ public class ContactHelper extends HelperBase {
         fillPersonalInfo(contact);
         fillOthersInfo(contact);
         fillBirthday(contact);
+        addPhoto(contact);
 //        selectGroupToContact(contact);
+    }
+
+    private void addPhoto(ContactData contact) {
+        attach(By.name("photo"), contact.photo());
     }
 
     private void fillOthersInfo(ContactData contact) {

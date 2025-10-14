@@ -103,7 +103,8 @@ public class TestsCreationContact extends TestsBase {
                 .withBirthDay("14")
                 .withBirthMonth("January")
                 .withBirthYear("2025")
-                .withGroup("group name"));
+                .withGroup("group name")
+                .withPhoto("src/test/resources/images/avatar.jpg"));
     }
 
     @Test
