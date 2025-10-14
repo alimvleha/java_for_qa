@@ -31,6 +31,5 @@ public class TestContactModification extends TestsBase {
         newContacts.sort(compareById);
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts, expectedList);
-
     }
 }

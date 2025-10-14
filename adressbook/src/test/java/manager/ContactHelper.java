@@ -56,7 +56,6 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContact(ContactData contact) {
-
         click(By.cssSelector(String.format("input[value='%s']", contact.id())));
     }
 
@@ -124,7 +123,7 @@ public class ContactHelper extends HelperBase {
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
         openContactPage();
         selectContact(contact);
-        initContactModification();
+        initContactModification(contact);
         fillPersonalInfo(modifiedContact);
         fillContactForm(modifiedContact);
         fillOthersInfo(modifiedContact);
@@ -136,8 +135,10 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//input[@name='update']"));
     }
 
-    private void initContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    private void initContactModification(ContactData contact) {
+        var contactRow = manager.driver.findElement(By.cssSelector(String.format("input[value='%s']", contact.id()))).findElement(By.xpath("./ancestor::tr"));
+        contactRow.findElement(By.xpath(".//img[@alt='Edit']")).click();
+        System.out.println(contact.id());
     }
 }
 
