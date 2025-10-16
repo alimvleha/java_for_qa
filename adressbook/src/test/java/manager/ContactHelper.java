@@ -30,7 +30,10 @@ public class ContactHelper extends HelperBase {
     }
 
     private void addPhoto(ContactData contact) {
-        attach(By.name("photo"), contact.photo());
+        String photo = contact.photo();
+        if (photo != null && !photo.trim().isEmpty()) {
+            attach(By.name("photo"), photo);
+        }
     }
 
     private void fillOthersInfo(ContactData contact) {

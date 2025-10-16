@@ -31,7 +31,7 @@ public class TestsCreationGroup extends TestsBase {
 
     public static List<GroupData> negativeGroupProvider() {
         var result = new ArrayList<GroupData>(List.of(
-                new GroupData("'", "name group'", "'", "'")));
+                new GroupData("'", "name group'", "header", "header")));
         return result;
     }
 

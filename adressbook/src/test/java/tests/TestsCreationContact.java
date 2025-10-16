@@ -89,7 +89,7 @@ public class TestsCreationContact extends TestsBase {
     @Test
     public void testCreateContact() {
         app.contacts().createContact(new ContactData()
-                .withFirstName("Алексей")
+                .withFirstName(randomString(10))
                 .withMiddleName("Альбертович")
                 .withLastName("Алимов")
                 .withNickname("alimov")
@@ -104,12 +104,13 @@ public class TestsCreationContact extends TestsBase {
                 .withBirthMonth("January")
                 .withBirthYear("2025")
                 .withGroup("group name")
-                .withPhoto("src/test/resources/images/avatar.jpg"));
+                .withPhoto(randomFile("src/test/resources/images")));
     }
 
     @Test
     public void testCreateContactWithNameOnly() {
-        app.contacts().createContact(new ContactData().withFirstName("Алексей"));
+        app.contacts().createContact(new ContactData()
+                .withFirstName("Алексей"));
     }
 
     @Test
