@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import ru.addressbook.common.CommonFunctions;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -32,11 +33,11 @@ public class TestsCreationContact extends TestsBase {
         }
         for (int i = 0; i < 5; i++) {
             result.add(new ContactData()
-                    .withFirstName(randomString(i * 5))
-                    .withMiddleName(randomString(i * 5))
-                    .withLastName(randomString(i * 5))
-                    .withAddress(randomString(i * 5))
-                    .withHomePhone(randomString(i * 5)));
+                    .withFirstName(CommonFunctions.randomString(i * 5))
+                    .withMiddleName(CommonFunctions.randomString(i * 5))
+                    .withLastName(CommonFunctions.randomString(i * 5))
+                    .withAddress(CommonFunctions.randomString(i * 5))
+                    .withHomePhone(CommonFunctions.randomString(i * 5)));
 //                    .withNickname(randomString(i * 5))
 //                    .withTitle(randomString(i * 5))
 //                    .withCompany(randomString(i * 5))
@@ -89,7 +90,7 @@ public class TestsCreationContact extends TestsBase {
     @Test
     public void testCreateContact() {
         app.contacts().createContact(new ContactData()
-                .withFirstName(randomString(10))
+                .withFirstName(CommonFunctions.randomString(10))
                 .withMiddleName("Альбертович")
                 .withLastName("Алимов")
                 .withNickname("alimov")
