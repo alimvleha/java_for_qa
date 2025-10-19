@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+import model.ContactData;
 import model.GroupData;
 import ru.addressbook.common.CommonFunctions;
 
@@ -60,7 +61,14 @@ public class Generator {
     }
 
     private Object generateContacts() {
-        return null;
+        var result = new ArrayList<ContactData>();
+        for (int i = 0; i < count; i++) {
+            result.add(new ContactData()
+                    .withLastName(CommonFunctions.randomString(10))
+                    .withFirstName(CommonFunctions.randomString(10))
+                    .withAddress(CommonFunctions.randomString(10)));
+        }
+        return result;
     }
 
     private void save(Object data) throws IOException {
@@ -71,21 +79,14 @@ public class Generator {
             try (var writer = new FileWriter(output)) {
                 writer.write(json);
             }
-        }
-
-        if ("yaml".equals(format)) {
+        } else if ("yaml".equals(format)) {
             var mapper = new YAMLMapper();
             mapper.writeValue(new FileWriter(output), data);
-
-        }
-
-        if ("xml".equals(format)) {
+        } else if ("xml".equals(format)) {
             var mapper = new XmlMapper();
             mapper.writeValue(new FileWriter(output), data);
         } else {
             throw new IllegalArgumentException("Неизвестный формат данных" + format);
         }
-
-
     }
 }

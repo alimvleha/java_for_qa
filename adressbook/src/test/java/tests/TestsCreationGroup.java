@@ -43,11 +43,11 @@ public class TestsCreationGroup extends TestsBase {
 
         }
         //var json = Files.readString(Paths.get("groups.json"));
-        //ObjectMapper mapper = new ObjectMapper();
-        var mapper = new XmlMapper();
-        //var value = mapper.readValue(json, new TypeReference<List<GroupData>>() {});
-        var value = mapper.readValue(new File("groups.xml"), new TypeReference<List<GroupData>>() {
-        });
+        ObjectMapper mapper = new ObjectMapper();
+//        var mapper = new XmlMapper();
+        var value = mapper.readValue(json, new TypeReference<List<GroupData>>() {});
+//        var value = mapper.readValue(new File("groups.xml"), new TypeReference<List<GroupData>>() {
+//        });
 
 
         result.addAll(value);
