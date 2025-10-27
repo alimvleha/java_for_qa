@@ -72,8 +72,7 @@ public class GroupHelper extends HelperBase {
     }
 
     private void returnToGroupsPage() {
-        click(By.xpath("//a[contains(text(),\'group page\')]"));
-
+        click(By.xpath("//a[contains(text(),'groups')]"));
     }
 
     private void submitGroupModification() {
