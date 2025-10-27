@@ -3,10 +3,10 @@ package model;
 import java.util.Objects;
 
 public final class GroupData {
-    public final String id;
-    public final String name;
-    public final String header;
-    public final String footer;
+    public String id;
+    public String name;
+    public String header;
+    public String footer;
 
     public GroupData(String id, String name, String header, String footer) {
         this.id = id;
