@@ -4,32 +4,47 @@ import model.ContactData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Random;
 
 public class TestContactModification extends TestsBase {
 
     @Test
     public void testModifyContact() {
-        if (app.contacts().getCount() == 0) {
-            app.contacts().createContact(new ContactData("", "Алексей", "", "Алимов", "", "", "ООО MTS", "г.Ульяновск", "+79190000001", "", "", "", "", "", "", "", ""));
+        if (app.hbm().getContactCount() == 0) {
+            app.contacts().createContact(new ContactData()
+                    .withFirstName("Алексей")
+                    .withLastName("Алимов")
+                    .withAddress("г. Москва")
+                    .withHomePhone("79160000001")
+                    .withEmail("alexey@example.com"));
         }
-        var oldContact = app.contacts().getList();
+
+        var oldContacts = app.hbm().getContactList();
         var rnd = new Random();
-        var index = rnd.nextInt(oldContact.size());
+        var index = rnd.nextInt(oldContacts.size());
+        var contactToModify = oldContacts.get(index);
+
         var testData = new ContactData()
-                .withLastName("Иванов")
-                .withAddress("432054 обл Ульяновская, г Ульяновск, ул Камышинская, дом 42");
-        app.contacts().modifyContact(oldContact.get(index), testData);
-        var newContacts = app.contacts().getList();
-        var expectedList = new ArrayList<>(oldContact);
-        expectedList.set(index, testData.withId(oldContact.get(index).id()));
-        Comparator<ContactData> compareById = (o1, o2) -> {
-            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
-        };
-        newContacts.sort(compareById);
-        expectedList.sort(compareById);
-        Assertions.assertEquals(newContacts, expectedList);
+                .withLastName("Ибрагим")
+                .withFirstName("Петров")
+                .withAddress("432054 обл Ульяновская, г Ульяновск, ул Камышинская, дом 66")
+                .withHomePhone("79010000001")
+                .withEmail("petrov@example.com");
+
+        app.contacts().modifyContact(contactToModify, testData);
+
+        var newContacts = app.hbm().getContactList();
+        var modifiedContact = newContacts.stream()
+                .filter(c -> c.id().equals(contactToModify.id()))
+                .findFirst()
+                .orElseThrow();
+
+        Assertions.assertEquals("Петров", modifiedContact.firstName());
+        Assertions.assertEquals("Ибрагим", modifiedContact.lastName());
+        Assertions.assertEquals("432054 обл Ульяновская, г Ульяновск, ул Камышинская, дом 66", modifiedContact.address());
+        Assertions.assertEquals("79010000001", modifiedContact.homePhone());
+        Assertions.assertEquals("petrov@example.com", modifiedContact.email());
+
+        Assertions.assertEquals(oldContacts.size(), newContacts.size());
     }
 }

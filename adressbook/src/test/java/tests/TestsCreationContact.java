@@ -84,9 +84,9 @@ public class TestsCreationContact extends TestsBase {
     @ParameterizedTest
     @MethodSource("contactProvider")
     public void testCreateMultipleContact(ContactData contact) {
-        var oldContacts = app.contacts().getList();
+        var oldContacts = app.hbm().getContactList();
         app.contacts().createContact(contact);
-        var newContacts = app.contacts().getList();
+        var newContacts = app.hbm().getContactList();
         Comparator<ContactData> compareById = (o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         };
@@ -113,16 +113,16 @@ public class TestsCreationContact extends TestsBase {
     @ParameterizedTest
     @MethodSource("negativeContactProvider")
     public void testNotCreateContact(ContactData contact) {
-        int contactCount = app.contacts().getCount();
+        var oldContacts = app.hbm().getContactList();
         app.contacts().createContact(contact);
-        int newContactCount = app.contacts().getCount();
-        Assertions.assertEquals(contactCount, newContactCount);
+        var newContacts = app.hbm().getContactList();
+        Assertions.assertEquals(oldContacts.size(), newContacts.size());
     }
 
 
     @Test
     public void testCreateContact() {
-        app.contacts().createContact(new ContactData()
+        var contact = new ContactData()
                 .withFirstName(CommonFunctions.randomString(10))
                 .withMiddleName("Альбертович")
                 .withLastName("Алимов")
@@ -138,18 +138,32 @@ public class TestsCreationContact extends TestsBase {
                 .withBirthMonth("January")
                 .withBirthYear("2025")
                 .withGroup("group name")
-                .withPhoto(randomFile("src/test/resources/images")));
+                .withPhoto(randomFile("src/test/resources/images"));
+        var oldContacts = app.hbm().getContactList();
+        app.contacts().createContact(contact);
+        var newContacts = app.hbm().getContactList();
+        Assertions.assertEquals(oldContacts.size() + 1, newContacts.size());
     }
 
     @Test
     public void testCreateContactWithNameOnly() {
-        app.contacts().createContact(new ContactData()
-                .withFirstName("Алексей"));
+        var contact = new ContactData()
+                .withFirstName("Алексей");
+        var oldContacts = app.hbm().getContactList();
+        app.contacts().createContact(contact);
+        var newContacts = app.hbm().getContactList();
+        Assertions.assertEquals(oldContacts.size() + 1, newContacts.size());
     }
 
     @Test
     public void testCreateContactWitchCompanyAndAddressOnly() {
-        app.contacts().createContact(new ContactData().withCompany("ИП Алимов А.А").withAddress("123456 г.Ульяновск., ул. Ефремова., д.140"));
+        var contact = new ContactData()
+                .withCompany("ИП Алимов А.А")
+                .withAddress("123456 г.Ульяновск., ул. Ефремова., д.140");
+        var oldContacts = app.hbm().getContactList();
+        app.contacts().createContact(contact);
+        var newContacts = app.hbm().getContactList();
+        Assertions.assertEquals(oldContacts.size() + 1, newContacts.size());
     }
 
     @Test
@@ -163,7 +177,6 @@ public class TestsCreationContact extends TestsBase {
             app.hbm().createGroup(new GroupData("", "name", "header", "footer"));
         }
         var group = app.hbm().getGroupList().get(0);
-
         var oldRelated = app.hbm().getContactsInGroup(group);
         app.contacts().createContact(contact, group);
         var newRelated = app.hbm().getContactsInGroup(group);

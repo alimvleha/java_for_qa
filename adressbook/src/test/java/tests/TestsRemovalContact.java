@@ -1,12 +1,9 @@
 package tests;
 
 import model.ContactData;
-import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class TestsRemovalContact extends TestsBase {
@@ -20,37 +17,39 @@ public class TestsRemovalContact extends TestsBase {
                     .withLastName("Алимов")
                     .withNickname("alimov"));
         }
-        var oldContacts = app.contacts().getList();
+        var oldContacts = app.hbm().getContactList();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
-        app.contacts().removeContact(oldContacts.get(index));
-        var newContacts = app.contacts().getList();
-        var expectedList = new ArrayList<>(oldContacts);
-        expectedList.remove(index);
-        Assertions.assertEquals(newContacts, expectedList);
+        var contactToRemove = oldContacts.get(index);
+
+        app.contacts().removeContact(contactToRemove);
+
+        var newContacts = app.hbm().getContactList();
+
+        Assertions.assertFalse(newContacts.contains(contactToRemove));
+
+        Assertions.assertEquals(oldContacts.size() - 1, newContacts.size());
     }
 
     @Test
     void testRemoveAllContactAtOnce() {
-        if (app.contacts().getCount() == 0) {
+        if (app.hbm().getContactCount() == 0) {
             app.contacts().createContact(new ContactData()
                     .withFirstName("Алексей")
-                    .withMiddleName("Альбертович")
-                    .withLastName("Алимов")
-                    .withNickname("alimov")
-                    .withTitle("Title")
-                    .withCompany("OOO MTS")
-                    .withAddress("г. Москва")
-                    .withHomePhone("79170000000")
-                    .withFax("459000000")
-                    .withEmail("aaalimo@mts.ru")
-                    .withHomepage("www.mts.ru")
-                    .withBirthDay("14")
-                    .withBirthMonth("January")
-                    .withBirthYear("2025")
-                    .withGroup("group name"));
+                    .withLastName("Алимов"));
+            app.contacts().createContact(new ContactData()
+                    .withFirstName("Иван")
+                    .withLastName("Петров"));
         }
+
+        var oldCount = app.hbm().getContactCount();
+
         app.contacts().removeAllContacts();
-        Assertions.assertEquals(0, app.contacts().getCount());
+
+        var newCount = app.hbm().getContactCount();
+        Assertions.assertEquals(0, newCount, "Контакты должны быть полностью удалены из базы данных");
+
+        var contactList = app.hbm().getContactList();
+        Assertions.assertTrue(contactList.isEmpty(), "Список контактов должен быть пустым");
     }
 }
