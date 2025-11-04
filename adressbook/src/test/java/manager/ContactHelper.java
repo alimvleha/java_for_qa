@@ -161,5 +161,35 @@ public class ContactHelper extends HelperBase {
         contactRow.findElement(By.xpath(".//img[@alt='Edit']")).click();
         System.out.println(contact.id());
     }
+
+    public void addContactToGroup(ContactData contact, GroupData group) {
+        openContactPage();
+        selectContact(contact);
+        getSelectGroupFor(group);
+        clickAddToGroup();
+        openContactPage();
+    }
+
+    private static void getSelectGroupFor(GroupData group) {
+        new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
+    }
+
+    private void clickAddToGroup() {
+        click(By.name("add"));
+    }
+
+    public void removeContactFromGroup(ContactData contact, GroupData group) {
+        openContactPage();
+        selectGroupFilter(group);
+        selectContact(contact);
+        clickRemoveFromGroup();
+        openContactPage();
+    }
+    private void selectGroupFilter(GroupData group) {
+        new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
+    }
+    private void clickRemoveFromGroup() {
+        manager.driver.findElement(By.name("remove")).click();
+    }
 }
 
