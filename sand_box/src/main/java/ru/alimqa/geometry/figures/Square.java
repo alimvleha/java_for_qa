@@ -18,11 +18,15 @@ public class Square {
         System.out.println("Площадь квадрата со стороной " + square.getSide() + " = " + area(square.getSide()));
     }
 
+    public static void printPerimeter(Square square) {
+        System.out.println("Периметр квадрата со стороной " + square.getSide() + " = " + perimeter(square.getSide()));
+    }
+
     public static double area(double a) {
         return a * a;
     }
 
-    public static double perimeter(double v) {
-        return 4 * v;
+    public static double perimeter(double side) {
+        return 4 * side;
     }
 }
