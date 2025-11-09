@@ -12,6 +12,8 @@ public record ContactData
          String homePhone,
          String fax,
          String email,
+         String email2,
+         String email3,
          String homepage,
          String birthDay,
          String birthMonth,
@@ -21,140 +23,175 @@ public record ContactData
          String mobilePhone,
          String workPhone) {
     public ContactData() {
-        this("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+        this("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
     }
 
 
     public ContactData withId(String id) {
         return new ContactData(id, firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withFirstName(String firstName) {
         return new ContactData(this.id, firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withMiddleName(String middleName) {
         return new ContactData(this.id, this.firstName, middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withLastName(String lastName) {
         return new ContactData(this.id, this.firstName, this.middleName, lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withNickname(String nickname) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withTitle(String title) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withCompany(String company) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withAddress(String address) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withHomePhone(String homePhone) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withMobilePhone(String mobilePhone) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, mobilePhone, this.workPhone);
     }
 
     public ContactData withWorkPhone(String workPhone) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, workPhone);
     }
 
     public ContactData withFax(String fax) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withEmail(String email) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
+    }
+
+    public ContactData withEmail2(String email2) {
+        return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
+                this.nickname, this.title, this.company, this.address,
+                this.homePhone, this.fax, this.email, email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
+    }
+
+    public ContactData withEmail3(String email3) {
+        return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
+                this.nickname, this.title, this.company, this.address,
+                this.homePhone, this.fax, this.email, this.email2, email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withHomepage(String homepage) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withBirthDay(String birthDay) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                birthDay, this.birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, birthDay, this.birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withBirthMonth(String birthMonth) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, birthMonth, this.birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, birthMonth, this.birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withBirthYear(String birthYear) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, birthYear, this.group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, birthYear,
+                this.group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withGroup(String group) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, group, this.photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                group, this.photo, this.mobilePhone, this.workPhone);
     }
 
     public ContactData withPhoto(String photo) {
         return new ContactData(this.id, this.firstName, this.middleName, this.lastName,
                 this.nickname, this.title, this.company, this.address,
-                this.homePhone, this.fax, this.email, this.homepage,
-                this.birthDay, this.birthMonth, this.birthYear, this.group, photo, this.mobilePhone, this.workPhone);
+                this.homePhone, this.fax, this.email, this.email2, this.email3,
+                this.homepage, this.birthDay, this.birthMonth, this.birthYear,
+                this.group, photo, this.mobilePhone, this.workPhone);
     }
 }
