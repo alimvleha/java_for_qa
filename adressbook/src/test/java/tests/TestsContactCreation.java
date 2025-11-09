@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class TestsCreationContact extends TestsBase {
+public class TestsContactCreation extends TestsBase {
 
     public static List<ContactData> contactProvider() throws IOException {
         var result = new ArrayList<ContactData>();
@@ -98,6 +98,8 @@ public class TestsCreationContact extends TestsBase {
                 .withTitle("")
                 .withCompany("")
                 .withHomePhone("")
+                .withMobilePhone("")
+                .withWorkPhone("")
                 .withFax("")
                 .withEmail("")
                 .withHomepage("")

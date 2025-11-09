@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-public class TestContactModification extends TestsBase {
+public class TestsContactModification extends TestsBase {
 
     @Test
     public void testModifyContact() {

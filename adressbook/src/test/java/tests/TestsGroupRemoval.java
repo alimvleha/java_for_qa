@@ -5,11 +5,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 
-public class TestsRemovalGroup extends TestsBase {
+public class TestsGroupRemoval extends TestsBase {
     @Test
     public void testRemoveGroup() {
         if (app.hbm().getGroupCount() == 0) {

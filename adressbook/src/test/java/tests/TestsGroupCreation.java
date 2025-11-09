@@ -16,11 +16,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-public class TestsCreationGroup extends TestsBase {
+public class TestsGroupCreation extends TestsBase {
     public static List<GroupData> groupProvider() throws IOException {
         var result = new ArrayList<GroupData>();
 //        for (var name : List.of("", "name group")) {

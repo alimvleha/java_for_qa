@@ -23,22 +23,29 @@ public class ContactRecord {
 
     @Column(name = "home")
     public String homePhone;
-
     @Column(name = "email")
     public String email;
+
+    @Column(name = "mobile")
+    public String mobilePhone;
+
+    @Column(name = "work")
+    public String workPhone;
+
 
 
     public ContactRecord() {
     }
 
-    public ContactRecord(int id, String firstname, String lastname, String address, String home,
-                         String email) {
+    public ContactRecord(int id, String firstname, String lastname, String address, String homePhone, String email,
+                          String mobilePhone, String workPhone) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
-        this.homePhone = home;
+        this.homePhone = homePhone;
         this.email = email;
-
+        this.mobilePhone = mobilePhone;
+        this.workPhone = workPhone;
     }
 }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-public class TestsRemovalContact extends TestsBase {
+public class TestsContactRemoval extends TestsBase {
     @Test
     public void testRemoveContact() {
         if (app.contacts().getCount() == 0) {

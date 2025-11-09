@@ -191,5 +191,10 @@ public class ContactHelper extends HelperBase {
     private void clickRemoveFromGroup() {
         manager.driver.findElement(By.name("remove")).click();
     }
+
+    public String getPhones(ContactData contact) {
+        return manager.driver.findElement(By.xpath(
+                String.format("//input[@id='%s']/../../td[6]", contact.id()))).getText();
+    }
 }
 
