@@ -102,6 +102,8 @@ public class TestsContactCreation extends TestsBase {
                 .withWorkPhone("")
                 .withFax("")
                 .withEmail("")
+                .withEmail2("")
+                .withEmail3("")
                 .withHomepage("")
                 .withBirthDay("")
                 .withBirthMonth("")
