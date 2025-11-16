@@ -10,19 +10,19 @@ public class TestsMail extends TestBase {
 
     @Test
     void testDeleteInbox() {
-        app.mail().deleteMail("user1@localhost", "password");
+        app.mail().deleteMail("useralimov_001@localhost", "password");
     }
 
     @Test
     void testReceiveEmail() {
-        var message = app.mail().receive("user1@localhost", "password", Duration.ofSeconds(30));
+        var message = app.mail().receive("useralimov_001@localhost", "password", Duration.ofSeconds(30));
         Assertions.assertEquals(1, message.size());
         System.out.println("Письмо: " + message);
     }
 
     @Test
     void testExctractUrl() {
-        var message = app.mail().receive("user1@localhost", "password", Duration.ofSeconds(30));
+        var message = app.mail().receive("alim01@localhost", "password", Duration.ofSeconds(30));
         var text = message.get(0).content();
         var pattertn = Pattern.compile("http://\\S+");
         var matcher = pattertn.matcher(text);

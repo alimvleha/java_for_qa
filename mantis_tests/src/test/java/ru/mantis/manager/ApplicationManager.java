@@ -11,11 +11,11 @@ public class ApplicationManager {
     private WebDriver driver;
     private String browser;
     private Properties properties;
-
     private SessionHelper sessionHelper;
     private HttpSessionHelper httpSessionHelper;
     private JamesCliHelper jamesCliHelper;
     private MailHelper mailHelper;
+    private UserHelper userHelper;
 
     public void init(String browser, Properties properties) {
         this.browser = browser;
@@ -71,5 +71,12 @@ public class ApplicationManager {
 
     public String property(String name) {
         return properties.getProperty(name);
+    }
+
+    public UserHelper user() {
+        if (userHelper == null) {
+            userHelper = new UserHelper(this);
+        }
+        return userHelper;
     }
 }
