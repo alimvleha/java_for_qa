@@ -34,7 +34,7 @@ public class TestsUserRegistration extends TestBase {
 
         var messages = app.mail().receive(email, password, Duration.ofSeconds(30));
         var text = messages.get(0).content();
-        var pattern = Pattern.compile("http2://\\S+");
+        var pattern = Pattern.compile("http://\\S+");
         var matcher = pattern.matcher(text);
         if (matcher.find()) {
             var url = text.substring(matcher.start(), matcher.end());
