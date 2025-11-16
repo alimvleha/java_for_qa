@@ -5,9 +5,6 @@ import org.junit.jupiter.api.Test;
 import ru.mantis.common.CommonFunctions;
 import ru.mantis.model.UserData;
 
-import java.time.Duration;
-import java.util.regex.Pattern;
-
 public class TestsUserRegistration extends TestBase {
 
 //    @Test
@@ -19,7 +16,7 @@ public class TestsUserRegistration extends TestBase {
 
     @Test
     void testRegistrationUser() {
-        var username = "alimov." + (CommonFunctions.randomString(3));
+        var username = "alimovleha." + (CommonFunctions.randomString(3));
         var email = String.format("%s@localhost", username);
         var password = "password";
         app.jamesCli().addUser(email, password);
@@ -28,21 +25,13 @@ public class TestsUserRegistration extends TestBase {
 
         app.session().login("administrator", "root");
 
-        var userData = new UserData(username, username, email);
+        var userData = new UserData(username, username, email, password, password);
         app.user().createNewUserAccount(userData);
 
-        var messages = app.mail().receive(email, password, Duration.ofSeconds(30));
-        var text = messages.get(0).content();
-        var pattern = Pattern.compile("http://\\S+");
-        var matcher = pattern.matcher(text);
-        if (matcher.find()) {
-            var url = text.substring(matcher.start(), matcher.end());
-            System.out.println("Ссылка для подтверждения регистрации: " + url);
-        } else {
-            Assertions.fail("Письмо не пришло или ссылка не пришла");
-        }
+        app.user().confirmUserAccount(email, password, userData);
 
+        app.http().login(username, password);
+        System.out.println("Зашел под пользуном : " + username + " : " + password);
+        Assertions.assertTrue(app.http().isLoggedIn());
     }
-
-
 }
