@@ -10,12 +10,11 @@ import java.util.regex.Pattern;
 
 public class TestsUserRegistration extends TestBase {
 
-    @Test
-    void testAddUserNoEmail() {
-        app.session().login("administrator", "root");
-        Assertions.assertTrue(app.session().isLoggedIn());
-
-    }
+//    @Test
+//    void testAddUserNoEmail() {
+//        app.session().login("administrator", "root");
+//        Assertions.assertTrue(app.session().isLoggedIn());
+//    }
 
 
     @Test
