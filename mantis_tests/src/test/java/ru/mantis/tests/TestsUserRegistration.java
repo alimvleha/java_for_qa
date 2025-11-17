@@ -36,7 +36,7 @@ public class TestsUserRegistration extends TestBase {
     }
 
     @Test
-    void testRegistrationUserApi() {
+    void testRegistrationUserJamesApi() {
         var username = "alimovleha." + (CommonFunctions.randomString(3));
         var email = String.format("%s@localhost", username);
         var password = "password";
@@ -55,4 +55,23 @@ public class TestsUserRegistration extends TestBase {
         System.out.println("Зашел под пользуном : " + username + " : " + password);
         Assertions.assertTrue(app.http().isLoggedIn());
     }
+
+    @Test
+    void testRegistrationUser() {
+        var username = "alimovleha.rest." + (CommonFunctions.randomString(3));
+        var email = String.format("%s@localhost", username);
+        var password = "password";
+        app.jamesApi().addUser(email, password);
+        System.out.println(username);
+        System.out.println(email);
+
+        var userData = new UserData(username, username, email, password, password);
+        app.rest().createNewUserAccount(userData);
+        System.out.println("rest : " + userData);
+        app.user().confirmUserAccount(email, password, userData);
+        app.http().login(username, password);
+        System.out.println("Зашел под пользуном : " + username + " : " + password);
+        Assertions.assertTrue(app.http().isLoggedIn());
+    }
+
 }
