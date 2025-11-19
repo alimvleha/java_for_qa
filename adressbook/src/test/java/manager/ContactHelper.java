@@ -1,7 +1,9 @@
 package manager;
 
+import io.qameta.allure.Step;
 import model.ContactData;
 import model.GroupData;
+import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
@@ -94,6 +96,7 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
+    @Step
     private void openContactPage() {
         click(By.xpath("//a[contains(text(),'home')]"));
     }
@@ -185,9 +188,11 @@ public class ContactHelper extends HelperBase {
         clickRemoveFromGroup();
         openContactPage();
     }
+
     private void selectGroupFilter(GroupData group) {
         new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
     }
+
     private void clickRemoveFromGroup() {
         manager.driver.findElement(By.name("remove")).click();
     }

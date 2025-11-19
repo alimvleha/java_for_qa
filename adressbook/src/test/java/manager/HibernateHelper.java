@@ -1,5 +1,7 @@
 package manager;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import manager.hbm.ContactRecord;
 import manager.hbm.GroupRecord;
 import model.ContactData;
@@ -103,6 +105,8 @@ public class HibernateHelper extends HelperBase {
         });
     }
 
+    @Step
+    @Description("Получение связки контакт+группа из бд hbm")
     public List<ContactData> getContactsInGroup(GroupData group) {
         return sessionFactory.fromSession(session -> {
             return convertContactList(session.get(GroupRecord.class, group.id()).contacts);
@@ -114,6 +118,7 @@ public class HibernateHelper extends HelperBase {
             return session.createQuery("from ContactRecord", ContactRecord.class).list();
         }));
     }
+
     public long getContactCount() {
         return sessionFactory.fromSession(session -> {
             return session.createQuery("select count (*) from ContactRecord", Long.class).getSingleResult();

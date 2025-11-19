@@ -2,6 +2,7 @@ package tests;
 
 import model.ContactData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
@@ -9,6 +10,7 @@ import java.util.Random;
 public class TestsContactModification extends TestsBase {
 
     @Test
+    @DisplayName("Модификация контакта")
     public void testModifyContact() {
         if (app.hbm().getContactCount() == 0) {
             app.contacts().createContact(new ContactData()

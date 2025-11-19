@@ -74,4 +74,16 @@ public class TestsUserRegistration extends TestBase {
         Assertions.assertTrue(app.http().isLoggedIn());
     }
 
+
+    @Test
+    void testRegistrationUserSoap() {
+        var username = "alimovleha.rest." + (CommonFunctions.randomString(3));
+        var email = String.format("%s@localhost", username);
+        var password = "password";
+
+
+
+
+    }
+
 }

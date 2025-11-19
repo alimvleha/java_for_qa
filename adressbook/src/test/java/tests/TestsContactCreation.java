@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -82,6 +83,7 @@ public class TestsContactCreation extends TestsBase {
     }
 
     @ParameterizedTest
+    @DisplayName("Массовое создание контактов")
     @MethodSource("contactProvider")
     public void testCreateMultipleContact(ContactData contact) {
         var oldContacts = app.hbm().getContactList();
@@ -115,6 +117,7 @@ public class TestsContactCreation extends TestsBase {
     }
 
     @ParameterizedTest
+    @DisplayName("Негативная проверка. Проверка то что контакт не создается")
     @MethodSource("negativeContactProvider")
     public void testNotCreateContact(ContactData contact) {
         var oldContacts = app.hbm().getContactList();
@@ -125,6 +128,7 @@ public class TestsContactCreation extends TestsBase {
 
 
     @Test
+    @DisplayName("Smoke. Создание контакта")
     public void testCreateContact() {
         var contact = new ContactData()
                 .withFirstName(CommonFunctions.randomString(10))
@@ -150,6 +154,7 @@ public class TestsContactCreation extends TestsBase {
     }
 
     @Test
+    @DisplayName("Smoke. Создание контакта с заполненным только именем")
     public void testCreateContactWithNameOnly() {
         var contact = new ContactData()
                 .withFirstName("Алексей");
@@ -160,6 +165,7 @@ public class TestsContactCreation extends TestsBase {
     }
 
     @Test
+    @DisplayName("Smoke. Создание контакта с заполнением только: компании и адреса")
     public void testCreateContactWitchCompanyAndAddressOnly() {
         var contact = new ContactData()
                 .withCompany("ИП Алимов А.А")

@@ -2,6 +2,7 @@ package tests;
 
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.addressbook.common.CommonFunctions;
 
@@ -13,6 +14,7 @@ import java.util.Set;
 public class TestsGroupMidification extends TestsBase {
 
     @Test
+    @DisplayName("Модификация группы")
     void testModifyGroup() {
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().createGroup(new GroupData("", "name", "header", "footer"));

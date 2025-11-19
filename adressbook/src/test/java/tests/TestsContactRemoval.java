@@ -28,7 +28,7 @@ public class TestsContactRemoval extends TestsBase {
 
         Assertions.assertFalse(newContacts.contains(contactToRemove));
 
-        Assertions.assertEquals(oldContacts.size() - 1, newContacts.size());
+        Assertions.assertEquals(oldContacts.size() + 1, newContacts.size());
     }
 
     @Test

@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Step;
 import manager.ApplicationManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,6 +30,7 @@ public class TestsBase {
 //        app.jdbc().checkConsistency();
 //    }
 
+    @Step
     public static String randomFile(String dir) {
         var  fileNames = new File(dir).list();
         var rnd = new Random();

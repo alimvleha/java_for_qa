@@ -1,15 +1,20 @@
 package tests;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.Story;
+import jdk.jfr.Description;
 import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.addressbook.common.CommonFunctions;
 
 import java.util.Random;
 
 public class TestsContactToGroup extends TestsBase {
-
+    @Description("Добавление контакта в группу")
+    @DisplayName("Добавление контакта в группу")
     @Test
     public void testAddContactToGroup() {
         var contacts = app.hbm().getContactList();
@@ -44,12 +49,12 @@ public class TestsContactToGroup extends TestsBase {
             String testLastName = "Алимов-" + CommonFunctions.randomString(5);
 
             contactToAdd = new ContactData()
-                        .withFirstName(testFirstName)
-                        .withLastName(testLastName)
-                        .withAddress("г. Москва")
-                        .withHomePhone("79160000001")
-                        .withEmail("alexey@example.com");
-                app.contacts().createContact(contactToAdd);
+                    .withFirstName(testFirstName)
+                    .withLastName(testLastName)
+                    .withAddress("г. Москва")
+                    .withHomePhone("79160000001")
+                    .withEmail("alexey@example.com");
+            app.contacts().createContact(contactToAdd);
 
             var newContacts = app.hbm().getContactList();
             contactToAdd = newContacts.stream()
@@ -62,11 +67,14 @@ public class TestsContactToGroup extends TestsBase {
         app.contacts().addContactToGroup(contactToAdd, targetGroup);
         var newContactsInGroup = app.hbm().getContactsInGroup(targetGroup);
 
-        Assertions.assertEquals(oldContactsInGroup.size() + 1, newContactsInGroup.size(),
-                "Количество контактов в группе должно увеличиться на 1");
+        Allure.step("Ассерт, проверка: \"Количество контактов в группе должно увеличиться на 1\"", step ->{
+            Assertions.assertEquals(oldContactsInGroup.size() + 1, newContactsInGroup.size(),
+                    "Количество контактов в группе должно увеличиться на 1");
+        });
     }
 
     @Test
+    @DisplayName("Удаление контакта из группы")
     public void testRemoveContactFromGroup() {
         if (app.hbm().getContactCount() == 0) {
             app.contacts().createContact(new ContactData()

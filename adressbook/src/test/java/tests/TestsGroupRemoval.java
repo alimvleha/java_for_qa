@@ -2,6 +2,7 @@ package tests;
 
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class TestsGroupRemoval extends TestsBase {
     }
 
     @Test
+    @DisplayName("Массовое удаление групп")
     void testRemoveAllGroupsAtOnce() {
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().createGroup(new GroupData("", "name", "header", "footer"));
